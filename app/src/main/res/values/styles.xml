@@ -21,7 +21,6 @@
     <style name="BaseToolbarStyle">
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="android:theme">@style/BaseToolbarTheme</item>
-        <item name="titleTextAppearance">@style/CustomTitleTextAppearance</item>
     </style>
 
     <style name="BaseToolbarTheme">
@@ -29,35 +28,32 @@
         <item name="android:textColorSecondary">@color/colorTextPrimary</item>
     </style>
 
-    <style name="CustomTitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:textStyle">bold</item>
+    <style name="AppTheme.ProgressBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:visibility">visible</item>
     </style>
 
-    <style name="MoviePoster">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:scaleType">centerCrop</item>
-        <item name="android:transitionName">@string/movie_transition_poster</item>
-        <item name="android:background">@color/colorPrimary</item>
+    <style name="AppTheme.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="MovieDetailsTitle">
+    <style name="AppTheme.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/colorTextSecondary</item>
-        <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textSize">@dimen/movie_details_title</item>
-        <item name="android:paddingRight">20dp</item>
-        <item name="android:paddingLeft">20dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
-    <style name="MovieDetailsText" parent="MovieDetailsTitle">
-        <item name="android:textColor">@color/colorTextPrimary</item>
-        <item name="android:textSize">@dimen/movie_details_text</item>
-        <item name="android:paddingBottom">25dp</item>
-        <item name="android:freezesText">true</item>
+
+    <style name="AppTheme.HintTextView" parent="AppTheme.TextView">
+        <item name="android:textColor">#A9A9A9</item>
     </style>
 
 </resources>

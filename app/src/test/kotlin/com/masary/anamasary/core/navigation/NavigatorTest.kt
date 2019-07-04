@@ -16,9 +16,9 @@
 package com.masary.anamasary.core.navigation
 
 import com.masary.anamasary.AndroidTest
+import com.masary.anamasary.features.codeverification.CodeVerificationActivity
 import com.masary.anamasary.features.login.Authenticator
 import com.masary.anamasary.features.login.LoginActivity
-import com.masary.anamasary.features.movies.MoviesActivity
 import com.masary.anamasary.shouldNavigateTo
 import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Before
@@ -52,6 +52,6 @@ class NavigatorTest : AndroidTest() {
         navigator.showMain(activityContext())
 
         verify(authenticator).userLoggedIn()
-        RouteActivity::class shouldNavigateTo MoviesActivity::class
+        RouteActivity::class shouldNavigateTo CodeVerificationActivity::class
     }
 }

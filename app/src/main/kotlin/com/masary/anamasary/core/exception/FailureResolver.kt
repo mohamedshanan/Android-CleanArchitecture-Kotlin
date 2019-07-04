@@ -13,13 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.core.exception
 
-import com.masary.anamasary.core.extension.empty
+abstract class FailureResolver<in Type> {
 
-data class Movie(val id: Int, val poster: String) {
+    abstract suspend fun resolve(i: Type): Failure
 
-    companion object {
-        fun empty() = Movie(0, String.empty())
-    }
+    class None
 }

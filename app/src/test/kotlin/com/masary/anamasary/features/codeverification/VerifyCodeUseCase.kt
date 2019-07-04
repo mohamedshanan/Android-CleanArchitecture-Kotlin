@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
 import com.masary.anamasary.UnitTest
 import com.masary.anamasary.core.functional.Either.Right
@@ -25,23 +25,24 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 
-class GetMovieDetailsTest : UnitTest() {
+class VerifyCodeUseCase : UnitTest() {
 
-    private val MOVIE_ID = 1
+    private val FAKE_VERIFICATION_CODE = "123456"
 
-    private lateinit var getMovieDetails: GetMovieDetails
+    private lateinit var verifyCode: VerifyCode
 
-    @Mock private lateinit var moviesRepository: MoviesRepository
+    @Mock
+    private lateinit var keyRepository: KeyRepository
 
     @Before fun setUp() {
-        getMovieDetails = GetMovieDetails(moviesRepository)
-        given { moviesRepository.movieDetails(MOVIE_ID) }.willReturn(Right(MovieDetails.empty()))
+        verifyCode = VerifyCode(keyRepository)
+        given { keyRepository.verifyCode(FAKE_VERIFICATION_CODE) }.willReturn(Right(Key.empty()))
     }
 
     @Test fun `should get data from repository`() {
-        runBlocking { getMovieDetails.run(GetMovieDetails.Params(MOVIE_ID)) }
+        runBlocking { verifyCode.run(VerifyCode.Params(FAKE_VERIFICATION_CODE)) }
 
-        verify(moviesRepository).movieDetails(MOVIE_ID)
-        verifyNoMoreInteractions(moviesRepository)
+        verify(keyRepository).verifyCode(FAKE_VERIFICATION_CODE)
+        verifyNoMoreInteractions(keyRepository)
     }
 }

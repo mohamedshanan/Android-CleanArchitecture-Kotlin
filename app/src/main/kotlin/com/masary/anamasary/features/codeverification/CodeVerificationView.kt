@@ -13,8 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-data class MovieEntity(private val id: Int, private val poster: String) {
-    fun toMovie() = Movie(id, poster)
+import android.os.Parcel
+import com.masary.anamasary.core.platform.KParcelable
+import com.masary.anamasary.core.platform.parcelableCreator
+
+data class CodeVerificationView(val id: Int, val poster: String) : KParcelable {
+    companion object {
+        @JvmField
+        val CREATOR = parcelableCreator(::CodeVerificationView)
+    }
+
+    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString())
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        with(dest) {
+            writeInt(id)
+            writeString(poster)
+        }
+    }
 }

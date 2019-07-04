@@ -17,8 +17,7 @@ package com.masary.anamasary.core.di.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.masary.anamasary.features.movies.MovieDetailsViewModel
-import com.masary.anamasary.features.movies.MoviesViewModel
+import com.masary.anamasary.features.codeverification.VerificationViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -30,11 +29,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(MoviesViewModel::class)
-    abstract fun bindsMoviesViewModel(moviesViewModel: MoviesViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MovieDetailsViewModel::class)
-    abstract fun bindsMovieDetailsViewModel(movieDetailsViewModel: MovieDetailsViewModel): ViewModel
+    @ViewModelKey(VerificationViewModel::class)
+    abstract fun bindsMovieDetailsViewModel(verificationViewModel: VerificationViewModel): ViewModel
 }

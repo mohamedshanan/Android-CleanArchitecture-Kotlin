@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import com.masary.anamasary.core.interactor.UseCase
-import com.masary.anamasary.core.interactor.UseCase.None
-import javax.inject.Inject
+import android.content.Context
+import android.content.Intent
+import com.masary.anamasary.core.platform.BaseActivity
 
-class GetMovies
-@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<List<Movie>, None>() {
+class CodeVerificationActivity : BaseActivity() {
 
-    override suspend fun run(params: None) = moviesRepository.movies()
+    companion object {
+        fun callingIntent(context: Context) = Intent(context, CodeVerificationActivity::class.java)
+    }
+
+    override fun fragment() = CodeVerificationFragment.newInstance()
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
 import com.masary.anamasary.core.exception.Failure
 import com.masary.anamasary.core.exception.Failure.NetworkConnection
@@ -25,24 +25,16 @@ import com.masary.anamasary.core.platform.NetworkHandler
 import retrofit2.Call
 import javax.inject.Inject
 
-interface MoviesRepository {
-    fun movies(): Either<Failure, List<Movie>>
-    fun movieDetails(movieId: Int): Either<Failure, MovieDetails>
+interface KeyRepository {
+    fun verifyCode(movieId: String): Either<Failure, Key>
 
     class Network
     @Inject constructor(private val networkHandler: NetworkHandler,
-                        private val service: MoviesService) : MoviesRepository {
+                        private val service: KeysService) : KeyRepository {
 
-        override fun movies(): Either<Failure, List<Movie>> {
+        override fun verifyCode(verificationCode: String): Either<Failure, Key> {
             return when (networkHandler.isConnected) {
-                true -> request(service.movies(), { it.map { it.toMovie() } }, emptyList())
-                false, null -> Left(NetworkConnection)
-            }
-        }
-
-        override fun movieDetails(movieId: Int): Either<Failure, MovieDetails> {
-            return when (networkHandler.isConnected) {
-                true -> request(service.movieDetails(movieId), { it.toMovieDetails() }, MovieDetailsEntity.empty())
+                true -> request(service.verifyCode(verificationCode), { it.toMovieDetails() }, KeyEntity.empty())
                 false, null -> Left(NetworkConnection)
             }
         }
@@ -51,8 +43,8 @@ interface MoviesRepository {
             return try {
                 val response = call.execute()
                 when (response.isSuccessful) {
-                    true -> Right(transform((response.body() ?: default)))
                     false -> Left(ServerError)
+                    true -> Right(transform((response.body() ?: default)))
                 }
             } catch (exception: Throwable) {
                 Left(ServerError)

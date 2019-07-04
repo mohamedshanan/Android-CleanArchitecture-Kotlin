@@ -1,10 +1,14 @@
 <resources>
-    <string name="app_name">Movies Kotlin</string>
-
-    <string name="action_refresh">Refresh</string>
+    <string name="app_name">AnaMasary</string>
+    <string name="login_screen_title">Login</string>
+    <string name="code_verification_screen_title">Code Verification</string>
 
     <string name="failure_network_connection">No Network Connection.</string>
     <string name="failure_server_error">Server Error</string>
-    <string name="failure_movies_list_unavailable">Movies Unavailable.</string>
-    <string name="failure_movie_non_existent">Movie Not Existent.</string>
+    <string name="failure_invalid_verification_code">Invalid Verification Code</string>
+
+    <string name="view_text_verification_code_hint">Waiting to automatically detect SMS sent to your registered mobile number</string>
+    <string name="view_text_not_receiving_sms">If you Didn\'t receive the sms. Please login to your Masary account and click Activiate AnaMasary</string>
+
+    <string name="btn_text_verify">Verify</string>
 </resources>

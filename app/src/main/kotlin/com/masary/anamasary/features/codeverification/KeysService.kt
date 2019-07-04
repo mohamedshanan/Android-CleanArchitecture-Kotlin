@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
 
-internal interface MoviesApi {
-    companion object {
-        private const val PARAM_MOVIE_ID = "movieId"
-        private const val MOVIES = "movies.json"
-        private const val MOVIE_DETAILS = "movie_0{$PARAM_MOVIE_ID}.json"
-    }
+@Singleton
+class KeysService
+@Inject constructor(retrofit: Retrofit) : KeysApi {
+    private val moviesApi by lazy { retrofit.create(KeysApi::class.java) }
 
-    @GET(MOVIES) fun movies(): Call<List<MovieEntity>>
-    @GET(MOVIE_DETAILS) fun movieDetails(@Path(PARAM_MOVIE_ID) movieId: Int): Call<MovieDetailsEntity>
+    override fun verifyCode(movieId: String) = moviesApi.verifyCode(movieId)
 }

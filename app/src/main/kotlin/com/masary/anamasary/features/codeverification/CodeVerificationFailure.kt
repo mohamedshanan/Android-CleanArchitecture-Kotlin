@@ -13,16 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import com.masary.anamasary.core.interactor.UseCase
-import com.masary.anamasary.features.movies.GetMovieDetails.Params
-import javax.inject.Inject
+import com.masary.anamasary.core.exception.Failure.FeatureFailure
 
-class GetMovieDetails
-@Inject constructor(private val moviesRepository: MoviesRepository) : UseCase<MovieDetails, Params>() {
-
-    override suspend fun run(params: Params) = moviesRepository.movieDetails(params.id)
-
-    data class Params(val id: Int)
+class CodeVerificationFailure {
+    class InvalidBin : FeatureFailure()
+    class InvalidVerificationCode : FeatureFailure()
 }
+

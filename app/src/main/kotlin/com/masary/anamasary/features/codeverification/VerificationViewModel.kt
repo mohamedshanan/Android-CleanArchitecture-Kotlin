@@ -13,26 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
 import android.arch.lifecycle.MutableLiveData
 import com.masary.anamasary.core.platform.BaseViewModel
-import com.masary.anamasary.features.movies.GetMovieDetails.Params
+import com.masary.anamasary.features.codeverification.VerifyCode.Params
 import javax.inject.Inject
 
-class MovieDetailsViewModel
-@Inject constructor(private val getMovieDetails: GetMovieDetails,
+class VerificationViewModel
+@Inject constructor(private val verifyCode: VerifyCode,
                     private val playMovie: PlayMovie) : BaseViewModel() {
 
-    var movieDetails: MutableLiveData<MovieDetailsView> = MutableLiveData()
+    var encryptionKeyModel: MutableLiveData<EncryptionKeyModel> = MutableLiveData()
 
-    fun loadMovieDetails(movieId: Int) =
-            getMovieDetails(Params(movieId)) { it.either(::handleFailure, ::handleMovieDetails) }
+    fun verifyCode(verificationCode: String) = verifyCode(Params(verificationCode)) { it.either(::handleFailure, ::handleKey) }
 
-    fun playMovie(url: String) = playMovie(PlayMovie.Params(url))
 
-    private fun handleMovieDetails(movie: MovieDetails) {
-        this.movieDetails.value = MovieDetailsView(movie.id, movie.title, movie.poster,
-                movie.summary, movie.cast, movie.director, movie.year, movie.trailer)
+    private fun handleKey(encryptionKey: Key) {
+        this.encryptionKeyModel.value = EncryptionKeyModel(encryptionKey.key)
     }
 }

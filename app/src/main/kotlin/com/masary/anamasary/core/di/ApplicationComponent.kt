@@ -18,8 +18,7 @@ package com.masary.anamasary.core.di
 import com.masary.anamasary.AndroidApplication
 import com.masary.anamasary.core.di.viewmodel.ViewModelModule
 import com.masary.anamasary.core.navigation.RouteActivity
-import com.masary.anamasary.features.movies.MovieDetailsFragment
-import com.masary.anamasary.features.movies.MoviesFragment
+import com.masary.anamasary.features.codeverification.CodeVerificationFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -29,6 +28,5 @@ interface ApplicationComponent {
     fun inject(application: AndroidApplication)
     fun inject(routeActivity: RouteActivity)
 
-    fun inject(moviesFragment: MoviesFragment)
-    fun inject(movieDetailsFragment: MovieDetailsFragment)
+    fun inject(codeVerificationFragment: CodeVerificationFragment)
 }

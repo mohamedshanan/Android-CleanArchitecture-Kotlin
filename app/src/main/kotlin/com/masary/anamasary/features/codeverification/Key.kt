@@ -13,23 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import android.content.Context
-import android.content.Intent
-import com.masary.anamasary.core.platform.BaseActivity
+import com.masary.anamasary.core.extension.empty
 
-class MovieDetailsActivity : BaseActivity() {
+data class Key(val key: String) {
 
     companion object {
-        private const val INTENT_EXTRA_PARAM_MOVIE = "com.masary.INTENT_PARAM_MOVIE"
-
-        fun callingIntent(context: Context, movie: MovieView): Intent {
-            val intent = Intent(context, MovieDetailsActivity::class.java)
-            intent.putExtra(INTENT_EXTRA_PARAM_MOVIE, movie)
-            return intent
-        }
+        fun empty() = Key(String.empty())
     }
-
-    override fun fragment() = MovieDetailsFragment.forMovie(intent.getParcelableExtra(INTENT_EXTRA_PARAM_MOVIE))
 }
+
+

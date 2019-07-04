@@ -13,12 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import com.masary.anamasary.core.exception.Failure.FeatureFailure
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Path
 
-class MovieFailure {
-    class ListNotAvailable: FeatureFailure()
-    class NonExistentMovie: FeatureFailure()
+internal interface KeysApi {
+    companion object {
+        private const val PARAM_MOVIE_ID = "movieId"
+        private const val MOVIES = "verifyPackage.json"
+        private const val MOVIE_DETAILS = "movie_0{$PARAM_MOVIE_ID}.json"
+    }
+
+    @GET(MOVIE_DETAILS)
+    fun verifyCode(@Path(PARAM_MOVIE_ID) movieId: String): Call<KeyEntity>
 }
-

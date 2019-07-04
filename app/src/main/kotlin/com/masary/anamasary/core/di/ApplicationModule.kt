@@ -18,7 +18,7 @@ package com.masary.anamasary.core.di
 import android.content.Context
 import com.masary.anamasary.AndroidApplication
 import com.masary.anamasary.BuildConfig
-import com.masary.anamasary.features.movies.MoviesRepository
+import com.masary.anamasary.features.codeverification.KeyRepository
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -49,5 +49,7 @@ class ApplicationModule(private val application: AndroidApplication) {
         return okHttpClientBuilder.build()
     }
 
-    @Provides @Singleton fun provideMoviesRepository(dataSource: MoviesRepository.Network): MoviesRepository = dataSource
+    @Provides
+    @Singleton
+    fun provideMoviesRepository(dataSource: KeyRepository.Network): KeyRepository = dataSource
 }

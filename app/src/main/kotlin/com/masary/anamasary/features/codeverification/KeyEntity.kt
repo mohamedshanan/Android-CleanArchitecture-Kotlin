@@ -13,17 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import retrofit2.Retrofit
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.masary.anamasary.core.extension.empty
 
-@Singleton
-class MoviesService
-@Inject constructor(retrofit: Retrofit) : MoviesApi {
-    private val moviesApi by lazy { retrofit.create(MoviesApi::class.java) }
+data class KeyEntity(private val key: String) {
 
-    override fun movies() = moviesApi.movies()
-    override fun movieDetails(movieId: Int) = moviesApi.movieDetails(movieId)
+    companion object {
+        fun empty() = KeyEntity(String.empty())
+    }
+
+    fun toMovieDetails() = Key(key)
 }

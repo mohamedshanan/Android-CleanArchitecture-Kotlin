@@ -13,26 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
-import android.content.Context
 import com.masary.anamasary.core.exception.Failure
 import com.masary.anamasary.core.functional.Either
-import com.masary.anamasary.core.functional.Either.Right
 import com.masary.anamasary.core.interactor.UseCase
-import com.masary.anamasary.core.interactor.UseCase.None
-import com.masary.anamasary.core.navigation.Navigator
-import com.masary.anamasary.features.movies.PlayMovie.Params
+import com.masary.anamasary.features.codeverification.VerifyCode.Params
 import javax.inject.Inject
 
-class PlayMovie
-@Inject constructor(private val context: Context,
-                    private val navigator: Navigator) : UseCase<None, Params>() {
+class VerifyCode
+@Inject constructor(private val keyRepository: KeyRepository) : UseCase<Key, Params>() {
 
-    override suspend fun run(params: Params): Either<Failure, None> {
-        navigator.openVideo(context, params.url)
-        return Right(None())
-    }
+    override suspend fun run(params: Params): Either<Failure, Key> = keyRepository.verifyCode(params.verificationCode)
 
-    data class Params(val url: String)
+    data class Params(val verificationCode: String)
 }

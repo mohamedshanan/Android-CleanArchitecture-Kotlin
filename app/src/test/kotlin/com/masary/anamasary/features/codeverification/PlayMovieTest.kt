@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.masary.anamasary.features.movies
+package com.masary.anamasary.features.codeverification
 
 import com.masary.anamasary.AndroidTest
 import com.masary.anamasary.core.navigation.Navigator
